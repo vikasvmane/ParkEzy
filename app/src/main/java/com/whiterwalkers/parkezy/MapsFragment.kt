@@ -17,6 +17,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.MarkerOptions
 
 class MapsFragment : Fragment() {
@@ -33,6 +34,9 @@ class MapsFragment : Fragment() {
          * user has installed Google Play services and returned to the app.
          */
         this.googleMap = googleMap
+        googleMap.setMapStyle(
+            MapStyleOptions.loadRawResourceStyle(
+                context!!, R.raw.map_style))
         val sydney = LatLng(-34.0, 151.0)
         googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
