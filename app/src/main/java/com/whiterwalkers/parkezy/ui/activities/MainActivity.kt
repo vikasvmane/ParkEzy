@@ -1,5 +1,7 @@
-package com.whiterwalkers.parkezy
+package com.whiterwalkers.parkezy.ui.activities
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.Menu
 import com.google.android.material.snackbar.Snackbar
@@ -11,7 +13,12 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import com.whiterwalkers.parkezy.R
 import com.whiterwalkers.parkezy.databinding.ActivityMainBinding
+import com.whiterwalkers.parkezy.ui.fragments.ParkInfoBottomSheetFragment
+import com.whiterwalkers.parkezy.ui.utils.CAMERA_PERMISSION_REQUEST_CODE
 
 class MainActivity : AppCompatActivity() {
 
@@ -42,14 +49,34 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        binding.appBarMain.fab.setOnClickListener {
+            ParkInfoBottomSheetFragment.newInstance(5).apply {
+                show(supportFragmentManager,ParkInfoBottomSheetFragment.TAG)
+            }
+        }
+        init()
     }
 
+    private fun init(){
+        if(ContextCompat.checkSelfPermission(this@MainActivity,Manifest.permission.CAMERA)!=PackageManager.PERMISSION_GRANTED){
+           ActivityCompat.requestPermissions(this@MainActivity, arrayOf(Manifest.permission.CAMERA),
+               CAMERA_PERMISSION_REQUEST_CODE)
+        }
+    }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
         return true
     }
 
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+    }
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
