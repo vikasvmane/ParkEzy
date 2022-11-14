@@ -7,7 +7,8 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_create_parking">Create Parking</string>
+    <string name="menu_home">Find Nearby Parking</string>
+    <string name="menu_create_parking">Rent a parking</string>
     <string name="menu_logout">Logout</string>
+    <string name="set_your_location">Set your Location</string>
 </resources>

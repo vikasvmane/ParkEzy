@@ -24,21 +24,21 @@
 
         <ImageView
             android:id="@+id/imageMarker"
-            android:layout_width="30dp"
+            android:layout_width="40dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/marker_pin" />
+            android:src="@drawable/ic_map_pin" />
 
         <TextView
             android:id="@+id/locationMarkerText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/common_google_signin_btn_text_dark"
+            android:background="@drawable/icons8_rounded_rectangle_stroked_96"
             android:gravity="center"
-            android:textSize="100sp"
-            android:minWidth="250dp"
+            android:textSize="20sp"
+            android:minWidth="160dp"
             android:paddingLeft="2dp"
             android:paddingRight="2dp"
-            android:text="Set your Location"
+            android:text="@string/set_your_location"
             android:textColor="@android:color/black" />
     </LinearLayout>
 </FrameLayout>
