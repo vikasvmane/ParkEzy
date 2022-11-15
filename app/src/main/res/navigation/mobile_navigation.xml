@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.whiterwalkers.parkezy.ui.home.HomeFragment"
+        android:name="com.whiterwalkers.parkezy.MapsFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
+        android:id="@+id/nav_create_parking"
         android:name="com.whiterwalkers.parkezy.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
+        android:label="@string/menu_create_parking"
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
+        android:id="@+id/nav_logout"
         android:name="com.whiterwalkers.parkezy.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
+        android:label="@string/menu_logout"
         tools:layout="@layout/fragment_slideshow" />
 </navigation>
