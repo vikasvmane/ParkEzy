@@ -1,4 +1,4 @@
-package com.whiterwalkers.parkezy.viewmodel
+package com.whiterwalkers.parkezy.ui.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

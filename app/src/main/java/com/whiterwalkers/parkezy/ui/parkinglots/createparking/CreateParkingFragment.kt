@@ -1,4 +1,4 @@
-package com.whiterwalkers.parkezy.ui.createparking
+package com.whiterwalkers.parkezy.ui.parkinglots.createparking
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -23,7 +23,7 @@ class CreateParkingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val createParkingViewModel =
-            ViewModelProvider(this).get(CreateParkingViewModel::class.java)
+            ViewModelProvider(this)[CreateParkingViewModel::class.java]
 
         _binding = FragmentGalleryBinding.inflate(inflater, container, false)
         val root: View = binding.root

@@ -1,4 +1,4 @@
-package com.whiterwalkers.parkezy
+package com.whiterwalkers.parkezy.ui
 
 import android.os.Bundle
 import android.view.Menu
@@ -11,6 +11,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import com.whiterwalkers.parkezy.R
 import com.whiterwalkers.parkezy.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -39,7 +40,12 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_create_parking, R.id.nav_logout
+                R.id.nav_home,
+                R.id.nav_manage_parking,
+                R.id.nav_manage_vehicles,
+                R.id.nav_payments,
+                R.id.nav_history,
+                R.id.nav_logout
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

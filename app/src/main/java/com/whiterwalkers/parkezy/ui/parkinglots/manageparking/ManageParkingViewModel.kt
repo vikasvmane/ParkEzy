@@ -1,10 +1,10 @@
-package com.whiterwalkers.parkezy.ui.createparking
+package com.whiterwalkers.parkezy.ui.parkinglots.manageparking
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class CreateParkingViewModel : ViewModel() {
+class ManageParkingViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is gallery Fragment"
