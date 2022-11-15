@@ -1,15 +1,13 @@
-package com.whiterwalkers.parkezy.model.datasource
+package com.whiterwalkers.parkezy.model.datasource.manageparking
 
 import com.whiterwalkers.parkezy.model.pojos.Location
 import com.whiterwalkers.parkezy.model.pojos.ParkingSpot
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 import kotlin.random.Random
 
-/**
- * Provides dummy data to the app. To be replaced with RemoteDataSource
- */
-class MockDataSourceImpl @Inject constructor() : MapDataSource {
+class MockManageParkingSpotImpl @Inject constructor() : ManageParkingDataSource {
     private fun getParkingSpot(
         name: String,
         address: String, info: String, rating: Float, lat: Double, lng: Double
@@ -25,7 +23,7 @@ class MockDataSourceImpl @Inject constructor() : MapDataSource {
 
     private fun getRandomId() = Random.nextInt(0, 100)
 
-    override fun getParkingSpots(currentLocation: Location) = flow {
+    override fun getParkingSpots(userId: Int) = flow {
         emit(
             listOf(
                 getParkingSpot(

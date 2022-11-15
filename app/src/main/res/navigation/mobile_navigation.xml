@@ -10,27 +10,35 @@
         android:name="com.whiterwalkers.parkezy.ui.home.MapsFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
-
     <fragment
         android:id="@+id/nav_manage_parking"
-        android:name="com.whiterwalkers.parkezy.ui.parkinglots.createparking.CreateParkingFragment"
+        android:name="com.whiterwalkers.parkezy.ui.parkinglots.manageparking.ManageParkingFragment"
         android:label="@string/menu_create_parking"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_manage_parking" >
+        <action
+            android:id="@+id/action_nav_manage_parking_to_nav_create_parking"
+            app:destination="@id/nav_create_parking" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_create_parking"
+        android:name="com.whiterwalkers.parkezy.ui.parkinglots.createparking.CreateParkingFragment"
+        android:label="Create Parking Spot"
+        tools:layout="@layout/fragment_create_parking" />
     <fragment
         android:id="@+id/nav_manage_vehicles"
         android:name="com.whiterwalkers.parkezy.ui.parkinglots.createparking.CreateParkingFragment"
         android:label="@string/menu_create_parking"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_create_parking" />
     <fragment
         android:id="@+id/nav_payments"
         android:name="com.whiterwalkers.parkezy.ui.parkinglots.createparking.CreateParkingFragment"
         android:label="@string/menu_create_parking"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_create_parking" />
     <fragment
         android:id="@+id/nav_history"
         android:name="com.whiterwalkers.parkezy.ui.parkinglots.createparking.CreateParkingFragment"
         android:label="@string/menu_create_parking"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_create_parking" />
 
     <fragment
         android:id="@+id/nav_logout"

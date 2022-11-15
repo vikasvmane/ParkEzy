@@ -4,6 +4,8 @@ import com.whiterwalkers.parkezy.model.MapRepository
 import com.whiterwalkers.parkezy.model.MapRepositoryImpl
 import com.whiterwalkers.parkezy.model.datasource.MapDataSource
 import com.whiterwalkers.parkezy.model.datasource.MockDataSourceImpl
+import com.whiterwalkers.parkezy.model.datasource.manageparking.ManageParkingDataSource
+import com.whiterwalkers.parkezy.model.datasource.manageparking.MockManageParkingSpotImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,8 +16,11 @@ import dagger.hilt.components.SingletonComponent
 class AppModule {
 
     @Provides
-    fun getLocalDataSource(impl: MockDataSourceImpl): MapDataSource = impl
+    fun getMockMapDataSource(impl: MockDataSourceImpl): MapDataSource = impl
 
     @Provides
     fun getMapRepository(impl: MapRepositoryImpl): MapRepository = impl
+
+    @Provides
+    fun getMockManageParkingDataSource(impl: MockManageParkingSpotImpl): ManageParkingDataSource = impl
 }

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_below="@+id/container_toolbar">
+
     <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
@@ -34,11 +35,11 @@
             android:layout_height="wrap_content"
             android:background="@drawable/icons8_rounded_rectangle_stroked_96"
             android:gravity="center"
-            android:textSize="20sp"
             android:minWidth="160dp"
             android:paddingLeft="2dp"
             android:paddingRight="2dp"
             android:text="@string/set_your_location"
-            android:textColor="@android:color/black" />
+            android:textColor="@color/fav_icon_tint"
+            android:textSize="18sp" />
     </LinearLayout>
 </FrameLayout>

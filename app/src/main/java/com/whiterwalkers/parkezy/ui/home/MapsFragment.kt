@@ -27,6 +27,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import com.whiterwalkers.parkezy.R
 import com.whiterwalkers.parkezy.model.pojos.ParkingSpot
 import dagger.hilt.android.AndroidEntryPoint
@@ -178,22 +180,24 @@ class MapsFragment : Fragment() {
     }
 
     private fun setNearByParkingSpots(listParkingSpot: List<ParkingSpot>) {
-        googleMap.clear()
-        listParkingSpot.map {
-            val location = LatLng(it.location.lat, it.location.lng)
-            googleMap.addMarker(
-                MarkerOptions().position(location).title(it.parkingName)
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_parking))
-            )
-            googleMap.addMarker(
-                MarkerOptions().position(
-                    LatLng(
-                        currentLocation.latitude,
-                        currentLocation.longitude
-                    )
-                ).title("My location")
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_car_2))
-            )
+        if (this::googleMap.isInitialized) {
+            googleMap.clear()
+            listParkingSpot.map {
+                val location = LatLng(it.location.lat, it.location.lng)
+                googleMap.addMarker(
+                    MarkerOptions().position(location).title(it.parkingName)
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_parking))
+                )
+                googleMap.addMarker(
+                    MarkerOptions().position(
+                        LatLng(
+                            currentLocation.latitude,
+                            currentLocation.longitude
+                        )
+                    ).title("My location")
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_car_2))
+                )
+            }
         }
     }
 }

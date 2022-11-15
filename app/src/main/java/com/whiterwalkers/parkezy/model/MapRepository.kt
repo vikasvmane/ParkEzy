@@ -5,4 +5,5 @@ import com.whiterwalkers.parkezy.model.pojos.ParkingSpot
 
 interface MapRepository {
     suspend fun getNearByParkingSpots(currentLocation: Location): List<ParkingSpot>
+    suspend fun getUserParkingSpots(userId: Int): List<ParkingSpot>
 }
