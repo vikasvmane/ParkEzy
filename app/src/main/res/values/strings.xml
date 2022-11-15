@@ -11,4 +11,12 @@
     <string name="menu_create_parking">Rent a parking</string>
     <string name="menu_logout">Logout</string>
     <string name="set_your_location">Set your Location</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="tv_title">Title</string>
+    <string name="tv_description">Land mark details</string>
+    <string name="description">text description land mark details.</string>
+    <string name="rs">\u20B9</string>
+    <string name="park_title">Parking \u20B920/hr</string>
+    <string name="pay">Pay</string>
 </resources>
