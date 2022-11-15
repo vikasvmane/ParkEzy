@@ -4,14 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.whiterwalkers.parkezy.databinding.FragmentGalleryBinding
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.whiterwalkers.parkezy.R
+import com.whiterwalkers.parkezy.databinding.FragmentManageParkingBinding
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
+
+@AndroidEntryPoint
 class ManageParkingFragment : Fragment() {
-
-    private var _binding: FragmentGalleryBinding? = null
+    private var _binding: FragmentManageParkingBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -25,12 +32,42 @@ class ManageParkingFragment : Fragment() {
         val manageParkingViewModel =
             ViewModelProvider(this)[ManageParkingViewModel::class.java]
 
-        _binding = FragmentGalleryBinding.inflate(inflater, container, false)
+        _binding = FragmentManageParkingBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textTitle
-        manageParkingViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        val recyclerView: RecyclerView = binding.recyclerviewParkings
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            manageParkingViewModel.getParkingSpot(1)
+        }
+        manageParkingViewModel.parkingSpotLiveData.observe(viewLifecycleOwner) {
+            val adapter = ParkingListRecyclerViewAdapter(requireContext(), it, object :
+                ParkingSlotCallback {
+                override fun onParkingRateClick(pos: Int) {
+                    //Open Rate management fragment
+                }
+
+                override fun onParkingScheduleClick(pos: Int) {
+                    // Open schedule management fragment
+                }
+
+                override fun onParkingDeleteClick(pos: Int) {
+                    // Call delete API
+                }
+
+                override fun toggleAvailability(pos: Int, isAvailable: Boolean) {
+                    // Call API to toggle availability
+                }
+            })
+            val layoutManager = LinearLayoutManager(requireContext())
+            layoutManager.orientation = LinearLayoutManager.VERTICAL
+
+            recyclerView.layoutManager = layoutManager
+            recyclerView.adapter = adapter
+        }
+        binding.fabCreateParking.setOnClickListener {
+            Navigation.findNavController(binding.root)
+                .navigate(R.id.action_nav_manage_parking_to_nav_create_parking)
         }
         return root
     }

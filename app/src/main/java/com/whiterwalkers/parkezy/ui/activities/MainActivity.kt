@@ -34,11 +34,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.appBarMain.toolbar)
-
-        binding.appBarMain.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Opens up QR code scanner", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_main)
@@ -46,16 +41,16 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_create_parking, R.id.nav_logout
+                R.id.nav_home,
+                R.id.nav_manage_parking,
+                R.id.nav_manage_vehicles,
+                R.id.nav_payments,
+                R.id.nav_history,
+                R.id.nav_logout
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-        binding.appBarMain.fab.setOnClickListener {
-            ParkInfoBottomSheetFragment.newInstance(5).apply {
-                show(supportFragmentManager,ParkInfoBottomSheetFragment.TAG)
-            }
-        }
         init()
     }
 
@@ -70,10 +65,16 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-    private fun init(){
-        if(ContextCompat.checkSelfPermission(this@MainActivity,Manifest.permission.CAMERA)!=PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this@MainActivity, arrayOf(Manifest.permission.CAMERA),
-                CAMERA_PERMISSION_REQUEST_CODE)
+    private fun init() {
+        if (ContextCompat.checkSelfPermission(
+                this@MainActivity,
+                Manifest.permission.CAMERA
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this@MainActivity, arrayOf(Manifest.permission.CAMERA),
+                CAMERA_PERMISSION_REQUEST_CODE
+            )
         }
     }
 

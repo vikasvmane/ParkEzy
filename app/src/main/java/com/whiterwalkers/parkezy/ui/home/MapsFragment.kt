@@ -16,6 +16,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -29,6 +30,7 @@ import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.MarkerOptions
 import com.whiterwalkers.parkezy.R
 import com.whiterwalkers.parkezy.model.pojos.ParkingSpot
+import com.whiterwalkers.parkezy.ui.fragments.ParkInfoBottomSheetFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -98,6 +100,15 @@ class MapsFragment : Fragment() {
                     ).show()
                 }
             }
+        }
+        googleMap.setOnMarkerClickListener {
+            //Pass marker details to bottom sheet
+            Navigation.findNavController(this.requireView())
+                .navigate(R.id.action_nav_home_to_nav_bottom_sheet)
+//            ParkInfoBottomSheetFragment.newInstance(5).apply {
+//                show(activity?.supportFragmentManager!!, ParkInfoBottomSheetFragment.TAG)
+//            }
+            return@setOnMarkerClickListener false
         }
     }
 
@@ -178,22 +189,24 @@ class MapsFragment : Fragment() {
     }
 
     private fun setNearByParkingSpots(listParkingSpot: List<ParkingSpot>) {
-        googleMap.clear()
-        listParkingSpot.map {
-            val location = LatLng(it.location.lat, it.location.lng)
-            googleMap.addMarker(
-                MarkerOptions().position(location).title(it.parkingName)
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_parking))
-            )
-            googleMap.addMarker(
-                MarkerOptions().position(
-                    LatLng(
-                        currentLocation.latitude,
-                        currentLocation.longitude
-                    )
-                ).title("My location")
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_car_2))
-            )
+        if (this::googleMap.isInitialized) {
+            googleMap.clear()
+            listParkingSpot.map {
+                val location = LatLng(it.location.lat, it.location.lng)
+                googleMap.addMarker(
+                    MarkerOptions().position(location).title(it.parkingName)
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_parking))
+                )
+                googleMap.addMarker(
+                    MarkerOptions().position(
+                        LatLng(
+                            currentLocation.latitude,
+                            currentLocation.longitude
+                        )
+                    ).title("My location")
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_car_2))
+                )
+            }
         }
     }
 }

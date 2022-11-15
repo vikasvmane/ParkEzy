@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="BrandedSwitch.control" parent="Theme.AppCompat.Light">
+        <!-- active thumb & track color (30% transparency) -->
+        <item name="colorControlActivated">#e6e600</item>
+        <item name="colorSwitchThumbNormal">#cc0000</item>
+    </style>
+
+    <style name="BrandedSwitch.text" parent="Theme.AppCompat.Light">
+        <item name="android:textColor">#ffa000</item>
+        <item name="android:textSize">9dp</item>
+    </style>
+
+    <style name="BrandedCheckBox" parent="Theme.ParkEzy">
+        <item name="colorAccent">#aaf000</item>
+        <item name="colorControlNormal">#ff0000</item>
+    </style>
+
+    <style name="BrandedSwitch" parent="Theme.ParkEzy">
+        <item name="colorAccent">#39ac39</item>
+    </style>
+</resources>

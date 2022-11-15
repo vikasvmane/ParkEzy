@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="300dp"
     android:layout_gravity="bottom"
-
     android:padding="@dimen/dp_16"
     app:behavior_hideable="true"
     app:behavior_peekHeight="300dp"
