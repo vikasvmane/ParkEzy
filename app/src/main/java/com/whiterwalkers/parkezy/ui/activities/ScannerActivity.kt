@@ -14,6 +14,10 @@ class ScannerActivity : AppCompatActivity() {
         //setContentView(R.layout.activity_scanner)
         binding = ActivityScannerBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
+        binding.toolbar.setNavigationOnClickListener {
+            finish()
+        }
         codeScanner = CodeScanner(this, binding.scannerView)
 
         // Parameters (default values)
@@ -28,7 +32,13 @@ class ScannerActivity : AppCompatActivity() {
         // Callbacks
         codeScanner.decodeCallback = DecodeCallback {
             runOnUiThread {
-                Toast.makeText(this, "Scan result: ${it.text}", Toast.LENGTH_LONG).show()
+                //   Toast.makeText(this, "Scan result: ${it.text}", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    this@ScannerActivity,
+                    "Payment done successfully",
+                    Toast.LENGTH_SHORT
+                ).show()
+                finish()
             }
         }
         codeScanner.errorCallback = ErrorCallback { // or ErrorCallback.SUPPRESS

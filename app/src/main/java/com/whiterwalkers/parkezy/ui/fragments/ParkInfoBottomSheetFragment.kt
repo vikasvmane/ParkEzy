@@ -30,6 +30,7 @@ class ParkInfoBottomSheetFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.ivQrCodeScanner.setOnClickListener {
             startActivity(Intent(requireActivity(), ScannerActivity::class.java))
+            dialog?.cancel()
         }
     }
 

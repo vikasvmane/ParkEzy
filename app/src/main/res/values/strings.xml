@@ -15,4 +15,5 @@
     <string name="description">text description land mark details.</string>
     <string name="rs">\u20B9</string>
     <string name="park_title">Parking \u20B920/hr</string>
+    <string name="pay">Pay</string>
 </resources>
