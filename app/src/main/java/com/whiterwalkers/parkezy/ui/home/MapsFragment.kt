@@ -1,4 +1,4 @@
-package com.whiterwalkers.parkezy
+package com.whiterwalkers.parkezy.ui.home
 
 import android.Manifest
 import android.location.Location
@@ -27,8 +27,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.MarkerOptions
+import com.whiterwalkers.parkezy.R
 import com.whiterwalkers.parkezy.model.pojos.ParkingSpot
-import com.whiterwalkers.parkezy.viewmodel.MapViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

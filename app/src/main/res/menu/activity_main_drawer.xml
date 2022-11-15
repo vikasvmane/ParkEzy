@@ -9,11 +9,23 @@
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/menu_home" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_manage_parking"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_create_parking" />
+            android:title="Manage Parkings" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_manage_vehicles"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Manage Vehicles" />
+        <item
+            android:id="@+id/nav_payments"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Payments" />
+        <item
+            android:id="@+id/nav_history"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="History" />
+        <item
+            android:id="@+id/nav_logout"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_logout" />
     </group>

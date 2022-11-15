@@ -1,4 +1,4 @@
-package com.whiterwalkers.parkezy.ui.gallery
+package com.whiterwalkers.parkezy.ui.parkinglots.manageparking
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.whiterwalkers.parkezy.databinding.FragmentGalleryBinding
 
-class GalleryFragment : Fragment() {
+class ManageParkingFragment : Fragment() {
 
     private var _binding: FragmentGalleryBinding? = null
 
@@ -22,14 +22,14 @@ class GalleryFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val galleryViewModel =
-            ViewModelProvider(this).get(GalleryViewModel::class.java)
+        val manageParkingViewModel =
+            ViewModelProvider(this)[ManageParkingViewModel::class.java]
 
         _binding = FragmentGalleryBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textGallery
-        galleryViewModel.text.observe(viewLifecycleOwner) {
+        val textView: TextView = binding.textTitle
+        manageParkingViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root

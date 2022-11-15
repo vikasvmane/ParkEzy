@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         map:cameraZoom="18"
-        tools:context=".MapsFragment" />
+        tools:context=".ui.home.MapsFragment" />
 
     <LinearLayout
         android:id="@+id/locationMarker"
