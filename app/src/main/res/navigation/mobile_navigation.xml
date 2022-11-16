@@ -9,22 +9,28 @@
         android:id="@+id/nav_home"
         android:name="com.whiterwalkers.parkezy.ui.home.MapsFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_nav_home_to_nav_bottom_sheet"
             app:destination="@id/nav_bottom_sheet" />
     </fragment>
 
-    <fragment
+    <dialog
         android:id="@+id/nav_bottom_sheet"
         android:name="com.whiterwalkers.parkezy.ui.fragments.ParkInfoBottomSheetFragment"
         android:label="@string/menu_create_parking"
-        tools:layout="@layout/fragment_park_info_bottom_sheet_list_dialog" />
+        tools:layout="@layout/fragment_park_info_bottom_sheet_list_dialog">
+        <argument
+            android:name="Park"
+            android:defaultValue="@null"
+            app:argType="com.whiterwalkers.parkezy.model.pojos.ParkingSpot"
+            app:nullable="true" />
+    </dialog>
     <fragment
         android:id="@+id/nav_manage_parking"
         android:name="com.whiterwalkers.parkezy.ui.parkinglots.manageparking.ManageParkingFragment"
         android:label="@string/menu_create_parking"
-        tools:layout="@layout/fragment_manage_parking" >
+        tools:layout="@layout/fragment_manage_parking">
         <action
             android:id="@+id/action_nav_manage_parking_to_nav_create_parking"
             app:destination="@id/nav_create_parking" />

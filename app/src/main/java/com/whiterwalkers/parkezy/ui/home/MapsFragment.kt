@@ -30,7 +30,6 @@ import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.MarkerOptions
 import com.whiterwalkers.parkezy.R
 import com.whiterwalkers.parkezy.model.pojos.ParkingSpot
-import com.whiterwalkers.parkezy.ui.fragments.ParkInfoBottomSheetFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -103,11 +102,17 @@ class MapsFragment : Fragment() {
         }
         googleMap.setOnMarkerClickListener {
             //Pass marker details to bottom sheet
-            Navigation.findNavController(this.requireView())
-                .navigate(R.id.action_nav_home_to_nav_bottom_sheet)
-//            ParkInfoBottomSheetFragment.newInstance(5).apply {
-//                show(activity?.supportFragmentManager!!, ParkInfoBottomSheetFragment.TAG)
-//            }
+            val parkingSpot: ParkingSpot = it.tag as ParkingSpot
+            Log.d(TAG, "onMark listener ${parkingSpot.parkingName}")
+            parkingSpot?.let {
+                val bundle = Bundle().apply {
+                    putParcelable("Park", it)
+                }
+                Navigation.findNavController(this.requireView())
+                    .navigate(R.id.action_nav_home_to_nav_bottom_sheet, bundle)
+            }
+
+
             return@setOnMarkerClickListener false
         }
     }
@@ -167,8 +172,10 @@ class MapsFragment : Fragment() {
     private fun getLastLocation() {
         fusedLocationClient.lastLocation
             .addOnSuccessListener { location: Location? ->
+                Log.d(TAG, "lat: ${location?.latitude}, long: ${location?.longitude}")
                 setNewLocation(location)
                 if (location != null) {
+
                     currentLocation = location
                 }
             }
@@ -191,21 +198,25 @@ class MapsFragment : Fragment() {
     private fun setNearByParkingSpots(listParkingSpot: List<ParkingSpot>) {
         if (this::googleMap.isInitialized) {
             googleMap.clear()
+            googleMap.addMarker(
+                MarkerOptions().position(
+                    LatLng(
+                        currentLocation.latitude,
+                        currentLocation.longitude
+                    )
+                ).title("My location")
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_car_2))
+            )
             listParkingSpot.map {
                 val location = LatLng(it.location.lat, it.location.lng)
-                googleMap.addMarker(
+                Log.d(TAG, "location : ${location.latitude} ${location.longitude}")
+                var marker = googleMap.addMarker(
                     MarkerOptions().position(location).title(it.parkingName)
                         .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_parking))
+
                 )
-                googleMap.addMarker(
-                    MarkerOptions().position(
-                        LatLng(
-                            currentLocation.latitude,
-                            currentLocation.longitude
-                        )
-                    ).title("My location")
-                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_car_2))
-                )
+                marker?.tag = it
+
             }
         }
     }
