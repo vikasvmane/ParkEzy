@@ -19,4 +19,7 @@
     <string name="rs">\u20B9</string>
     <string name="park_title">Parking \u20B920/hr</string>
     <string name="pay">Pay</string>
+    <string name="add_car">Add Car</string>
+    <string name="menu_manage_vehicle">Manage Vehicles</string>
+    <string name="size">Size</string>
 </resources>
