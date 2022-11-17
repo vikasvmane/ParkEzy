@@ -42,9 +42,18 @@
         tools:layout="@layout/fragment_create_parking" />
     <fragment
         android:id="@+id/nav_manage_vehicles"
-        android:name="com.whiterwalkers.parkezy.ui.parkinglots.createparking.CreateParkingFragment"
-        android:label="@string/menu_create_parking"
-        tools:layout="@layout/fragment_create_parking" />
+        android:name="com.whiterwalkers.parkezy.ui.managevehicles.ManageVehicleFragment"
+        android:label="@string/menu_manage_vehicle"
+        tools:layout="@layout/fragment_manage_vehicle">
+        <action
+            android:id="@+id/action_nav_manage_parking_to_nav_add_car"
+            app:destination="@id/nav_add_car" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_add_car"
+        android:name="com.whiterwalkers.parkezy.ui.managevehicles.addcar.AddCarFragment"
+        android:label="Add Car"
+        tools:layout="@layout/framgent_add_car" />
     <fragment
         android:id="@+id/nav_payments"
         android:name="com.whiterwalkers.parkezy.ui.parkinglots.createparking.CreateParkingFragment"
@@ -56,9 +65,9 @@
         android:label="@string/menu_create_parking"
         tools:layout="@layout/fragment_create_parking" />
 
-    <fragment
-        android:id="@+id/nav_logout"
-        android:name="com.whiterwalkers.parkezy.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_logout"
-        tools:layout="@layout/fragment_slideshow" />
+    <!--    <fragment
+            android:id="@+id/nav_logout"
+            android:name="com.whiterwalkers.parkezy.ui.slideshow.SlideshowFragment"
+            android:label="@string/menu_logout"
+            tools:layout="@layout/fragment_slideshow" />-->
 </navigation>

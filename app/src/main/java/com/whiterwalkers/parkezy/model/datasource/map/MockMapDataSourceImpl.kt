@@ -1,9 +1,6 @@
 package com.whiterwalkers.parkezy.model.datasource.map
 
-import com.whiterwalkers.parkezy.model.pojos.Location
-import com.whiterwalkers.parkezy.model.pojos.ParkingSpot
-import com.whiterwalkers.parkezy.model.pojos.Rate
-import com.whiterwalkers.parkezy.model.pojos.Size
+import com.whiterwalkers.parkezy.model.pojos.*
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 import kotlin.random.Random
@@ -55,4 +52,33 @@ class MockMapDataSourceImpl @Inject constructor() : MapDataSource {
             )
         )
     }
+
+    override fun getVehicleList(userId: Int) = flow {
+        emit(
+            listOf(
+                Car(
+                    "TATA",
+                    "Nexon XZ",
+                    "My car",
+                    123121312,
+                    Size.SUV
+                ),
+                Car(
+                    "Hyundai",
+                    "Niox i10 Sports",
+                    "My wife's car",
+                    45645645645,
+                    Size.SUV
+                ),
+                Car(
+                    "TATA",
+                    "Safari",
+                    "Dad's car",
+                    123121312,
+                    Size.HATCHBACK
+                ),
+            )
+        )
+    }
+
 }
