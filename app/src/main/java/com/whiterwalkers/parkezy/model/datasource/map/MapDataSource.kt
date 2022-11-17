@@ -1,4 +1,4 @@
-package com.whiterwalkers.parkezy.model.datasource
+package com.whiterwalkers.parkezy.model.datasource.map
 
 import com.whiterwalkers.parkezy.model.pojos.Location
 import com.whiterwalkers.parkezy.model.pojos.ParkingSpot

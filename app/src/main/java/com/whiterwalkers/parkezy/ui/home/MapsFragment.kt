@@ -104,7 +104,7 @@ class MapsFragment : Fragment() {
             //Pass marker details to bottom sheet
             val parkingSpot: ParkingSpot = it.tag as ParkingSpot
             Log.d(TAG, "onMark listener ${parkingSpot.parkingName}")
-            parkingSpot?.let {
+            parkingSpot.let {
                 val bundle = Bundle().apply {
                     putParcelable("Park", it)
                 }
@@ -208,7 +208,7 @@ class MapsFragment : Fragment() {
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_car_2))
             )
             listParkingSpot.map {
-                val location = LatLng(it.location.lat, it.location.lng)
+                val location = LatLng(it.location?.lat!!, it.location.lng)
                 Log.d(TAG, "location : ${location.latitude} ${location.longitude}")
                 var marker = googleMap.addMarker(
                     MarkerOptions().position(location).title(it.parkingName)

@@ -4,7 +4,6 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.Menu
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -17,7 +16,6 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.whiterwalkers.parkezy.R
 import com.whiterwalkers.parkezy.databinding.ActivityMainBinding
-import com.whiterwalkers.parkezy.ui.fragments.ParkInfoBottomSheetFragment
 import com.whiterwalkers.parkezy.ui.utils.CAMERA_PERMISSION_REQUEST_CODE
 import dagger.hilt.android.AndroidEntryPoint
 

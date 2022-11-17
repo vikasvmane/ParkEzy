@@ -125,8 +125,8 @@ class ParkingListRecyclerViewAdapter(
         viewHolder.title.text = parkingSpot.parkingName
         viewHolder.address.text = parkingSpot.address
         viewHolder.info.text = parkingSpot.info
-        viewHolder.ratingBar.rating = parkingSpot.ratings
-        viewHolder.rate.text = "(${parkingSpot.ratings}/5)"
+        viewHolder.ratingBar.rating = parkingSpot.ratings ?: 0f
+        viewHolder.rate.text = "(${parkingSpot.ratings ?: 0f}/5)"
     }
 
     // Return the size of your dataset (invoked by the layout manager)
