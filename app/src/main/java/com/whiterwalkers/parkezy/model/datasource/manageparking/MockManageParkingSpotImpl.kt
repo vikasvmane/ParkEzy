@@ -2,6 +2,8 @@ package com.whiterwalkers.parkezy.model.datasource.manageparking
 
 import com.whiterwalkers.parkezy.model.pojos.Location
 import com.whiterwalkers.parkezy.model.pojos.ParkingSpot
+import com.whiterwalkers.parkezy.model.pojos.Rate
+import com.whiterwalkers.parkezy.model.pojos.Size
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -18,7 +20,12 @@ class MockManageParkingSpotImpl @Inject constructor() : ManageParkingDataSource 
             address = address,
             info = info,
             ratings = rating,
-            location = Location(lat, lng)
+            location = Location(lat, lng),
+            size = Size.SUV.name,
+            rate = Rate(standardRate = 40.0),
+            spotSchedule = null,
+            isAvailable = true,
+            isEvEnabled = false
         )
 
     private fun getRandomId() = Random.nextInt(0, 100)

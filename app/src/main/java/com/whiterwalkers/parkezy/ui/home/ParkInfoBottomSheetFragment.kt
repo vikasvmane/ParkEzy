@@ -1,4 +1,4 @@
-package com.whiterwalkers.parkezy.ui.fragments
+package com.whiterwalkers.parkezy.ui.home
 
 import android.content.Intent
 import android.os.Bundle
@@ -28,7 +28,7 @@ class ParkInfoBottomSheetFragment : BottomSheetDialogFragment() {
     ): View? {
 
         // var safeArgs: ParkInfoBottomSheetFragmentArgs by navArgs()
-        mPartSpot = arguments?.getParcelable<ParkingSpot>("Park")!!
+        mPartSpot = arguments?.getParcelable("Park")!!
         _binding = FragmentParkInfoBottomSheetListDialogBinding.inflate(inflater, container, false)
         Log.d(TAG, "parking spot ${mPartSpot.parkingName}")
         return binding.root
@@ -44,7 +44,7 @@ class ParkInfoBottomSheetFragment : BottomSheetDialogFragment() {
             binding.tvTitle.text = it.parkingName
             binding.tvSubtitle.text = it.address
             binding.tvDescription.text = it.info
-            binding.parkingRating.rating = it.ratings
+            binding.parkingRating.rating = it.ratings ?: 0.0f
         }
     }
 
