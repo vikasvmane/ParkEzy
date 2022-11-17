@@ -5,6 +5,21 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/nav_home">
 
+    <dialog
+        android:id="@+id/nav_bottom_sheet"
+        android:name="com.whiterwalkers.parkezy.ui.home.ParkInfoBottomSheetFragment"
+        android:label="@string/menu_create_parking"
+        tools:layout="@layout/fragment_park_info_bottom_sheet_list_dialog">
+        <action
+            android:id="@+id/action_nav_bottom_sheet_to_nav_transaction"
+            app:destination="@id/nav_transaction" />
+        <argument
+            android:name="Park"
+            android:defaultValue="@null"
+            app:argType="com.whiterwalkers.parkezy.model.pojos.ParkingSpot"
+            app:nullable="true" />
+    </dialog>
+
     <fragment
         android:id="@+id/nav_home"
         android:name="com.whiterwalkers.parkezy.ui.home.MapsFragment"
@@ -14,18 +29,6 @@
             android:id="@+id/action_nav_home_to_nav_bottom_sheet"
             app:destination="@id/nav_bottom_sheet" />
     </fragment>
-
-    <dialog
-        android:id="@+id/nav_bottom_sheet"
-        android:name="com.whiterwalkers.parkezy.ui.home.ParkInfoBottomSheetFragment"
-        android:label="@string/menu_create_parking"
-        tools:layout="@layout/fragment_park_info_bottom_sheet_list_dialog">
-        <argument
-            android:name="Park"
-            android:defaultValue="@null"
-            app:argType="com.whiterwalkers.parkezy.model.pojos.ParkingSpot"
-            app:nullable="true" />
-    </dialog>
     <fragment
         android:id="@+id/nav_manage_parking"
         android:name="com.whiterwalkers.parkezy.ui.parkinglots.manageparking.ManageParkingFragment"
@@ -57,8 +60,20 @@
         tools:layout="@layout/fragment_create_parking" />
 
     <fragment
-        android:id="@+id/nav_logout"
-        android:name="com.whiterwalkers.parkezy.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_logout"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_transaction"
+        android:name="com.whiterwalkers.parkezy.ui.home.transaction.TransactionFragment"
+        android:label="Your Booking"
+        tools:layout="@layout/fragment_slideshow">
+        <argument
+            android:name="Park"
+            android:defaultValue="@null"
+            app:argType="com.whiterwalkers.parkezy.model.pojos.ParkingSpot"
+            app:nullable="true" />
+        <action
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/nav_transaction"
+            app:popUpToInclusive="true"
+            android:id="@+id/action_nav_transaction_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
 </navigation>

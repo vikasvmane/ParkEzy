@@ -13,11 +13,12 @@ import kotlin.random.Random
  */
 class MockMapDataSourceImpl @Inject constructor() : MapDataSource {
     private fun getParkingSpot(
+        id: Int,
         name: String,
         address: String, info: String, rating: Float, lat: Double, lng: Double
     ) =
         ParkingSpot(
-            parkingId = getRandomId(),
+            parkingId = id,
             parkingName = name,
             address = address,
             info = info,
@@ -30,12 +31,11 @@ class MockMapDataSourceImpl @Inject constructor() : MapDataSource {
             isEvEnabled = false
         )
 
-    private fun getRandomId() = Random.nextInt(0, 100)
-
     override fun getParkingSpots(currentLocation: Location) = flow {
         emit(
             listOf(
                 getParkingSpot(
+                    123,
                     "Theia",
                     "Eela society",
                     "EV Parking | CCTV",
@@ -44,6 +44,7 @@ class MockMapDataSourceImpl @Inject constructor() : MapDataSource {
                     73.7345562
                 ),
                 getParkingSpot(
+                    234,
                     "Dream-It Furniture",
                     "Opp Siddhashila",
                     "Open",
@@ -51,7 +52,15 @@ class MockMapDataSourceImpl @Inject constructor() : MapDataSource {
                     18.6260854,
                     73.7339296
                 ),
-                getParkingSpot("Panjabi Tadka", "Kate Wasti", "Security", 4f, 18.625029, 73.7340166)
+                getParkingSpot(
+                    674,
+                    "Panjabi Tadka",
+                    "Kate Wasti",
+                    "Security",
+                    4f,
+                    18.625029,
+                    73.7340166
+                )
             )
         )
     }

@@ -1,5 +1,7 @@
 package com.whiterwalkers.parkezy.ui.activities
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -11,7 +13,6 @@ class ScannerActivity : AppCompatActivity() {
     private lateinit var codeScanner: CodeScanner
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_scanner)
         binding = ActivityScannerBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
@@ -32,12 +33,9 @@ class ScannerActivity : AppCompatActivity() {
         // Callbacks
         codeScanner.decodeCallback = DecodeCallback {
             runOnUiThread {
-                //   Toast.makeText(this, "Scan result: ${it.text}", Toast.LENGTH_LONG).show()
-                Toast.makeText(
-                    this@ScannerActivity,
-                    "Payment done successfully",
-                    Toast.LENGTH_SHORT
-                ).show()
+                val intent = Intent()
+                intent.putExtra("QRData", it.text)
+                setResult(Activity.RESULT_OK, intent)
                 finish()
             }
         }
