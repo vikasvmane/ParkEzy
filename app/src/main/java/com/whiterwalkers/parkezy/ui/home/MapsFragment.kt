@@ -107,6 +107,13 @@ class MapsFragment : Fragment() {
             parkingSpot.let {
                 val bundle = Bundle().apply {
                     putParcelable("Park", it)
+                    putParcelable(
+                        "Location",
+                        com.whiterwalkers.parkezy.model.pojos.Location(
+                            currentLocation.latitude,
+                            currentLocation.longitude
+                        )
+                    )
                 }
                 Navigation.findNavController(this.requireView())
                     .navigate(R.id.action_nav_home_to_nav_bottom_sheet, bundle)
@@ -210,7 +217,7 @@ class MapsFragment : Fragment() {
             listParkingSpot.map {
                 val location = LatLng(it.location?.lat!!, it.location.lng)
                 Log.d(TAG, "location : ${location.latitude} ${location.longitude}")
-                var marker = googleMap.addMarker(
+                val marker = googleMap.addMarker(
                     MarkerOptions().position(location).title(it.parkingName)
                         .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_parking))
 
