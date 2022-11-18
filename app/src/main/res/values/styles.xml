@@ -11,12 +11,4 @@
         <item name="android:textSize">9dp</item>
     </style>
 
-    <style name="BrandedCheckBox" parent="Theme.ParkEzy">
-        <item name="colorAccent">#aaf000</item>
-        <item name="colorControlNormal">#ff0000</item>
-    </style>
-
-    <style name="BrandedSwitch" parent="Theme.ParkEzy">
-        <item name="colorAccent">#39ac39</item>
-    </style>
 </resources>

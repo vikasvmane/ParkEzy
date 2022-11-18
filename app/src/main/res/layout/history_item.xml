@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:elevation="6dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:padding="4dp"
+        android:layout_height="wrap_content">
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleX=".7"
+            android:scaleY=".7"
+            android:transformPivotX="0dp"
+            android:transformPivotY="50dp"
+            app:layout_constraintStart_toStartOf="@id/guide_value"
+            app:layout_constraintTop_toBottomOf="@+id/text_total_charges" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Parking Name: "
+            app:layout_constraintBottom_toBottomOf="@id/text_parking_name"
+            app:layout_constraintStart_toStartOf="@id/guide_key"
+            app:layout_constraintTop_toTopOf="@+id/text_parking_name"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/text_parking_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Theia"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/guide_value"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Parking Address: "
+            app:layout_constraintBottom_toBottomOf="@+id/text_parking_address"
+            app:layout_constraintStart_toStartOf="@id/guide_key"
+            app:layout_constraintTop_toTopOf="@+id/text_parking_address"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/text_parking_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Punawale"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/guide_value"
+            app:layout_constraintTop_toBottomOf="@+id/text_parking_name" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Car details: "
+            app:layout_constraintBottom_toBottomOf="@+id/text_car_details"
+            app:layout_constraintStart_toStartOf="@id/guide_key"
+            app:layout_constraintTop_toTopOf="@+id/text_car_details"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/text_car_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Tata Nexon MH14HQ2342"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/guide_value"
+            app:layout_constraintTop_toBottomOf="@+id/text_parking_address" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Payment mode: "
+            app:layout_constraintBottom_toBottomOf="@+id/text_payment_details"
+            app:layout_constraintStart_toStartOf="@id/guide_key"
+            app:layout_constraintTop_toTopOf="@+id/text_payment_details"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/text_payment_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Wallet"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/guide_value"
+            app:layout_constraintTop_toBottomOf="@+id/text_car_details" />
+
+        <TextView
+            android:id="@+id/text_total_charges_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total Charges: "
+            app:layout_constraintBottom_toBottomOf="@+id/text_total_charges"
+            app:layout_constraintStart_toStartOf="@id/guide_key"
+            app:layout_constraintTop_toTopOf="@+id/text_total_charges"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/text_total_charges"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="40rs"
+            app:layout_constraintStart_toStartOf="@id/guide_value"
+            app:layout_constraintTop_toBottomOf="@+id/view_line" />
+
+        <TextView
+            android:id="@+id/text_label_rate_experience"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Rating"
+            app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
+            app:layout_constraintStart_toStartOf="@id/guide_key"
+            app:layout_constraintTop_toTopOf="@+id/ratingBar" />
+
+        <View
+            android:id="@+id/view_line"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_margin="10dp"
+            android:background="@color/fav_icon_tint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_payment_details" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide_key"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.04" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
