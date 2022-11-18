@@ -19,4 +19,8 @@ class VehicleRepositoryImpl @Inject constructor(private val dataSource: MapDataS
     override suspend fun addCar(car: Car): CreateParkingResponse {
         return CreateParkingResponse(true)
     }
+
+    override suspend fun saveSelectedCar(car: Car) {
+        dataSource.saveVehicle(car)
+    }
 }

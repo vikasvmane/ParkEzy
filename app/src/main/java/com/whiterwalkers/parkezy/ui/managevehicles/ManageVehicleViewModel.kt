@@ -18,4 +18,8 @@ class ManageVehicleViewModel @Inject constructor(private val mapRepository: IMan
     suspend fun getVehicleList(userId: Int) {
         _carLiveData.value = mapRepository.getCarList(userId)
     }
+
+    suspend fun saveVehicleData(car: Car) {
+        mapRepository.saveSelectedCar(car)
+    }
 }

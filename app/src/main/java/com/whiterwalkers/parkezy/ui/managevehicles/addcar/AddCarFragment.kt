@@ -56,7 +56,8 @@ class AddCarFragment : Fragment() {
                         nickName = binding.edCarName.text.toString(),
                         make = binding.edCarMake.text.toString(),
                         model = binding.edCarModel.text.toString(),
-                        type = getSizeFromUserSelection()
+                        type = getSizeFromUserSelection(),
+                        isPrimary = false
                     )
                 )
             }

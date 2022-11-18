@@ -6,4 +6,5 @@ import com.whiterwalkers.parkezy.model.pojos.service.CreateParkingResponse
 interface IManageVehicleRepository {
     suspend fun getCarList(userId: Int): List<Car>
     suspend fun addCar(car: Car): CreateParkingResponse
+    suspend fun saveSelectedCar(car: Car)
 }

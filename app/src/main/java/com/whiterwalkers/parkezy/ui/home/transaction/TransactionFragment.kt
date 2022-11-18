@@ -16,8 +16,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.whiterwalkers.parkezy.R
 import com.whiterwalkers.parkezy.databinding.FragmentTransactionBinding
+import com.whiterwalkers.parkezy.model.pojos.Car
 import com.whiterwalkers.parkezy.model.pojos.ParkingSpot
+import com.whiterwalkers.parkezy.model.pojos.Payment
 import com.whiterwalkers.parkezy.ui.activities.ScannerActivity
+import com.whiterwalkers.parkezy.ui.utils.DataStore
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,6 +29,8 @@ class TransactionFragment : Fragment() {
     private var _binding: FragmentTransactionBinding? = null
 
     private lateinit var mPartSpot: ParkingSpot
+    private var selectedCar: Car? = null
+    private var selectedPayment: Payment? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -63,6 +68,8 @@ class TransactionFragment : Fragment() {
             Navigation.findNavController(binding.root)
                 .navigate(R.id.action_nav_transaction_to_nav_home)
         }
+        selectedCar = DataStore.getSelectedCar()
+        selectedPayment = DataStore.getSelectedPayment()
         setParkingDetails()
     }
 
@@ -91,8 +98,8 @@ class TransactionFragment : Fragment() {
         binding.textParkingName.text = mPartSpot.parkingName
         binding.textParkingAddress.text = mPartSpot.address
         binding.textParkingRate.text = mPartSpot.rate?.standardRate.toString()
-        binding.textCarDetails.text = "Tata Nexon MH14HQ2342"
-        binding.textPaymentDetails.text = "Wallet"
+        binding.textCarDetails.text = "${selectedCar!!.make} ${selectedCar!!.model} - ${selectedCar!!.registrationNumber}"
+        binding.textPaymentDetails.text = "${selectedPayment!!.paymentName}"
     }
 
     private fun setSummary() {

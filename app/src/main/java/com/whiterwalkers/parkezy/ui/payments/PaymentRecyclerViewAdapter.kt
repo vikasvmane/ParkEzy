@@ -1,4 +1,4 @@
-package com.whiterwalkers.parkezy.ui.managevehicles
+package com.whiterwalkers.parkezy.ui.payments
 
 import android.content.Context
 import android.graphics.Color
@@ -9,32 +9,32 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.whiterwalkers.parkezy.R
-import com.whiterwalkers.parkezy.model.pojos.Car
+import com.whiterwalkers.parkezy.model.pojos.Payment
 
 
-class CarListAdapter(
+class PaymentRecyclerViewAdapter(
     private val context: Context,
-    private val dataSet: List<Car>,
-    private val callback: CarSelectionCallback
+    private val dataSet: List<Payment>,
+    private val callback: PaymentSelectionCallback
 ) :
-    RecyclerView.Adapter<CarListAdapter.ViewHolder>() {
+    RecyclerView.Adapter<PaymentRecyclerViewAdapter.ViewHolder>() {
 
     /**
      * Provide a reference to the type of views that you are using
      * (custom ViewHolder).
      */
-    class ViewHolder(context: Context, view: View, callback: CarSelectionCallback) :
+    class ViewHolder(context: Context, view: View, callback: PaymentSelectionCallback) :
         RecyclerView.ViewHolder(view) {
-        var ivCarImage: ImageView = itemView.findViewById(R.id.ivCarImage)
-        var tvCarName: TextView = itemView.findViewById(R.id.tvCarName)
-        var tvCarDetails: TextView = itemView.findViewById(R.id.tvCarDetails)
+        var textPaymentName: TextView = itemView.findViewById(R.id.text_payment_name)
+        var textPaymentWalletBalance: TextView = itemView.findViewById(R.id.text_wallet_balance)
+        var imagePaymentIcon: ImageView = itemView.findViewById(R.id.image_icon)
     }
 
     // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         // Create a new view, which defines the UI of the list item
         val view = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.adapter_car_list, viewGroup, false)
+            .inflate(R.layout.payment_item, viewGroup, false)
 
         return ViewHolder(context, view, callback)
     }
@@ -43,22 +43,24 @@ class CarListAdapter(
 
     // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        viewHolder.tvCarName.text = dataSet[position].nickName
-        viewHolder.tvCarDetails.text =
-            dataSet[position].make + " (" + dataSet[position].model + ") "
-//        if(dataSet[position].isPrimary)
+        val payment = dataSet[position]
+        viewHolder.textPaymentName.text = payment.paymentName
+        payment.balance?.let {
+            viewHolder.textPaymentWalletBalance.text = "Wallet Balance: Rs $it"
+        }
+        viewHolder.imagePaymentIcon.setImageResource(payment.icon)
+//        if (dataSet[position].isPrimary)
 //            rowIndex = position
         viewHolder.itemView.setOnClickListener {
             rowIndex = position
             notifyDataSetChanged()
-            callback.onSelectedVehicle(dataSet[position])
+            callback.onSelectedPaymentOption(payment)
             dataSet[position].isPrimary = true
         }
         if (rowIndex == position)
             viewHolder.itemView.setBackgroundColor(Color.parseColor("#22a4dfcc"))
         else
             viewHolder.itemView.setBackgroundColor(Color.parseColor("#ffffff"))
-
     }
 
     // Return the size of your dataset (invoked by the layout manager)

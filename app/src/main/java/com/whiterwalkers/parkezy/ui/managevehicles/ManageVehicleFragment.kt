@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.whiterwalkers.parkezy.R
 import com.whiterwalkers.parkezy.databinding.FragmentManageVehicleBinding
+import com.whiterwalkers.parkezy.model.pojos.Car
 import com.whiterwalkers.parkezy.ui.parkinglots.manageparking.ParkingSlotCallback
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -43,21 +44,11 @@ class ManageVehicleFragment : Fragment() {
         }
         manageParkingViewModel.carListData.observe(viewLifecycleOwner) {
             val adapter = CarListAdapter(requireContext(), it, object :
-                ParkingSlotCallback {
-                override fun onParkingRateClick(pos: Int) {
-                    //Open Rate management fragment
-                }
-
-                override fun onParkingScheduleClick(pos: Int) {
-                    // Open schedule management fragment
-                }
-
-                override fun onParkingDeleteClick(pos: Int) {
-                    // Call delete API
-                }
-
-                override fun toggleAvailability(pos: Int, isAvailable: Boolean) {
-                    // Call API to toggle availability
+                CarSelectionCallback{
+                override fun onSelectedVehicle(car: Car) {
+                    viewLifecycleOwner.lifecycleScope.launch {
+                        manageParkingViewModel.saveVehicleData(car)
+                    }
                 }
             })
             val layoutManager = LinearLayoutManager(requireContext())
