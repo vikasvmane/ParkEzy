@@ -63,9 +63,9 @@
         tools:layout="@layout/fragment_create_parking" />
     <fragment
         android:id="@+id/nav_history"
-        android:name="com.whiterwalkers.parkezy.ui.parkinglots.createparking.CreateParkingFragment"
-        android:label="@string/menu_create_parking"
-        tools:layout="@layout/fragment_create_parking" />
+        android:name="com.whiterwalkers.parkezy.ui.history.HistoryFragment"
+        android:label="Parking history"
+        tools:layout="@layout/fragment_history" />
 
     <fragment
         android:id="@+id/nav_transaction"
