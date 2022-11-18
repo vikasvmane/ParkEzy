@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <!-- Include only if your app benefits from precise location access. -->
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <!--
+ Required only when requesting background location access on
+     Android 10 (API level 29) and higher.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:name=".di.ParkEzyApplication"
         android:allowBackup="true"
@@ -12,7 +25,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ParkEzy"
         tools:targetApi="31">
-
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -30,20 +42,14 @@
             android:screenOrientation="fullSensor"
             android:theme="@style/Theme.ParkEzy.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="com.whiterwalkers.parkezy.ui.activities.MainActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
         </activity>
-
         <activity
             android:name=".ui.activities.ScannerActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
+            android:exported="true"
+            android:screenOrientation="fullSensor"
             android:theme="@style/Theme.ParkEzy.NoActionBar">
             <meta-data
                 android:name="android.app.lib_name"
@@ -53,23 +59,33 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="${MAPS_API_KEY}" />
-
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name=".ui.activities.LoginActivity"
+            android:exported="true"
+            android:theme="@style/Theme.ParkEzy.NoActionBar">
+            <intent-filter>
+                <action android:name="com.whiterwalkers.parkezy.ui.activities.LoginActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ui.activities.SplashScreenActivity"
+            android:exported="true"
+            android:theme="@style/Theme.ParkEzy.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="false" />
-    <!-- Required only when requesting background location access on
-     Android 10 (API level 29) and higher. -->
-    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <uses-permission android:name="android.permission.CAMERA" />
-
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
 </manifest>
