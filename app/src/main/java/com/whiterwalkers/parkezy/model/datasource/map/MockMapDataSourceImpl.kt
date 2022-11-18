@@ -1,14 +1,25 @@
 package com.whiterwalkers.parkezy.model.datasource.map
 
+import android.content.Context
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.preferencesDataStore
+import com.google.gson.Gson
 import com.whiterwalkers.parkezy.model.pojos.*
+import com.whiterwalkers.parkezy.ui.utils.DataStore
+import com.whiterwalkers.parkezy.ui.utils.USER_SELECTED_CAR
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.flow
+import kotlinx.parcelize.parcelableCreator
 import javax.inject.Inject
 import kotlin.random.Random
 
 /**
  * Provides dummy data to the app. To be replaced with RemoteDataSource
  */
-class MockMapDataSourceImpl @Inject constructor() : MapDataSource {
+class MockMapDataSourceImpl @Inject constructor(@ApplicationContext val appContext: Context) :
+    MapDataSource {
+   // private val Context.dataStore by preferencesDataStore("user_preferences")
     private fun getParkingSpot(
         id: Int,
         name: String,
@@ -65,29 +76,42 @@ class MockMapDataSourceImpl @Inject constructor() : MapDataSource {
     override fun getVehicleList(userId: Int) = flow {
         emit(
             listOf(
-                Car(
+                Car(1,
                     "TATA",
                     "Nexon XZ",
                     "My car",
                     123121312,
-                    Size.SUV
+                    Size.SUV,
+                    checkIsPrimary(1)
                 ),
-                Car(
+                Car(2,
                     "Hyundai",
                     "Niox i10 Sports",
                     "My wife's car",
                     45645645645,
-                    Size.SUV
+                    Size.SUV,
+                    checkIsPrimary(1)
                 ),
-                Car(
+                Car(3,
                     "TATA",
                     "Safari",
                     "Dad's car",
                     123121312,
-                    Size.HATCHBACK
+                    Size.HATCHBACK,
+                    checkIsPrimary(3)
                 ),
             )
         )
     }
 
+    override suspend fun saveVehicle(car: Car) {
+//        val dataStore = appContext.dataStore
+//        dataStore.edit {
+//            it[stringPreferencesKey(USER_SELECTED_CAR)] = Gson().toJson(car)
+//        }
+        DataStore.saveSelectedCar(car)
+    }
+
+    private fun checkIsPrimary(id: Int) =
+        DataStore.getSelectedCar() != null && DataStore.getSelectedCar()?.vehicleId == id
 }

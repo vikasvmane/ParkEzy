@@ -8,4 +8,5 @@ import kotlinx.coroutines.flow.Flow
 interface MapDataSource {
     fun getParkingSpots(currentLocation: Location): Flow<List<ParkingSpot>>
     fun getVehicleList(userId: Int): Flow<List<Car>>
+    suspend fun saveVehicle(car: Car)
 }
