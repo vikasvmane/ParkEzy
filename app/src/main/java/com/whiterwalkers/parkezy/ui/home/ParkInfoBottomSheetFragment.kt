@@ -105,6 +105,10 @@ class ParkInfoBottomSheetFragment : BottomSheetDialogFragment() {
             binding.textSelectedPayment.text = "${selectedPayment!!.paymentName}"
         else
             binding.textSelectedPayment.text = "Select Payment"
+
+        binding.ivSchedule.setOnClickListener {
+            Toast.makeText(requireContext(), "You should be able to schedule parking", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private var resultLauncher =

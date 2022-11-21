@@ -41,7 +41,8 @@ class MockMapDataSourceImpl @Inject constructor(@ApplicationContext val appConte
                     "Eela society",
                     "EV Parking | CCTV",
                     3f,
-                    18.352092980717263, 74.03363915610463
+                    18.6269348,
+                    73.7345562
                 ),
                 getParkingSpot(
                     234,
@@ -49,7 +50,8 @@ class MockMapDataSourceImpl @Inject constructor(@ApplicationContext val appConte
                     "Opp Siddhashila",
                     "Open",
                     2f,
-                    18.353467702254438, 74.03282376460234
+                    18.6260854,
+                    73.7339296
                 ),
                 getParkingSpot(
                     674,
@@ -57,7 +59,8 @@ class MockMapDataSourceImpl @Inject constructor(@ApplicationContext val appConte
                     "Kate Wasti",
                     "Security",
                     4f,
-                    18.354323079021654, 74.03388591932243
+                    18.625029,
+                    73.7340166
                 )
             )
         )
