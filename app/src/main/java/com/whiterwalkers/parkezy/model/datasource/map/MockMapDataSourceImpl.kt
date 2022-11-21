@@ -1,25 +1,18 @@
 package com.whiterwalkers.parkezy.model.datasource.map
 
 import android.content.Context
-import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.core.stringPreferencesKey
-import androidx.datastore.preferences.preferencesDataStore
-import com.google.gson.Gson
 import com.whiterwalkers.parkezy.model.pojos.*
 import com.whiterwalkers.parkezy.ui.utils.DataStore
-import com.whiterwalkers.parkezy.ui.utils.USER_SELECTED_CAR
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.flow
-import kotlinx.parcelize.parcelableCreator
 import javax.inject.Inject
-import kotlin.random.Random
 
 /**
  * Provides dummy data to the app. To be replaced with RemoteDataSource
  */
 class MockMapDataSourceImpl @Inject constructor(@ApplicationContext val appContext: Context) :
     MapDataSource {
-   // private val Context.dataStore by preferencesDataStore("user_preferences")
+    // private val Context.dataStore by preferencesDataStore("user_preferences")
     private fun getParkingSpot(
         id: Int,
         name: String,
@@ -48,8 +41,7 @@ class MockMapDataSourceImpl @Inject constructor(@ApplicationContext val appConte
                     "Eela society",
                     "EV Parking | CCTV",
                     3f,
-                    18.6269348,
-                    73.7345562
+                    18.352092980717263, 74.03363915610463
                 ),
                 getParkingSpot(
                     234,
@@ -57,8 +49,7 @@ class MockMapDataSourceImpl @Inject constructor(@ApplicationContext val appConte
                     "Opp Siddhashila",
                     "Open",
                     2f,
-                    18.6260854,
-                    73.7339296
+                    18.353467702254438, 74.03282376460234
                 ),
                 getParkingSpot(
                     674,
@@ -66,8 +57,7 @@ class MockMapDataSourceImpl @Inject constructor(@ApplicationContext val appConte
                     "Kate Wasti",
                     "Security",
                     4f,
-                    18.625029,
-                    73.7340166
+                    18.354323079021654, 74.03388591932243
                 )
             )
         )
@@ -76,7 +66,8 @@ class MockMapDataSourceImpl @Inject constructor(@ApplicationContext val appConte
     override fun getVehicleList(userId: Int) = flow {
         emit(
             listOf(
-                Car(1,
+                Car(
+                    1,
                     "TATA",
                     "Nexon XZ",
                     "My car",
@@ -84,7 +75,8 @@ class MockMapDataSourceImpl @Inject constructor(@ApplicationContext val appConte
                     Size.SUV,
                     checkIsPrimary(1)
                 ),
-                Car(2,
+                Car(
+                    2,
                     "Hyundai",
                     "Niox i10 Sports",
                     "My wife's car",
@@ -92,7 +84,8 @@ class MockMapDataSourceImpl @Inject constructor(@ApplicationContext val appConte
                     Size.SUV,
                     checkIsPrimary(1)
                 ),
-                Car(3,
+                Car(
+                    3,
                     "TATA",
                     "Safari",
                     "Dad's car",

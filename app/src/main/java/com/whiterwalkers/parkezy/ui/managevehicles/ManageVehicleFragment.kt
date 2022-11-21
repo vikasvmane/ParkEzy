@@ -1,6 +1,7 @@
 package com.whiterwalkers.parkezy.ui.managevehicles
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.whiterwalkers.parkezy.R
 import com.whiterwalkers.parkezy.databinding.FragmentManageVehicleBinding
 import com.whiterwalkers.parkezy.model.pojos.Car
-import com.whiterwalkers.parkezy.ui.parkinglots.manageparking.ParkingSlotCallback
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -26,6 +26,7 @@ class ManageVehicleFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    private val TAG = ManageVehicleFragment::class.java.simpleName
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -44,9 +45,11 @@ class ManageVehicleFragment : Fragment() {
         }
         manageParkingViewModel.carListData.observe(viewLifecycleOwner) {
             val adapter = CarListAdapter(requireContext(), it, object :
-                CarSelectionCallback{
+                CarSelectionCallback {
                 override fun onSelectedVehicle(car: Car) {
+                    Log.d(TAG, "onSelected Vehicle $car")
                     viewLifecycleOwner.lifecycleScope.launch {
+                        Log.d(TAG, "launch $car")
                         manageParkingViewModel.saveVehicleData(car)
                     }
                 }

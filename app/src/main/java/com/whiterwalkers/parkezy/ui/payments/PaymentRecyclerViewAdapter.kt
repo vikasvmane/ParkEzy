@@ -53,9 +53,9 @@ class PaymentRecyclerViewAdapter(
 //            rowIndex = position
         viewHolder.itemView.setOnClickListener {
             rowIndex = position
-            notifyDataSetChanged()
             callback.onSelectedPaymentOption(payment)
             dataSet[position].isPrimary = true
+            notifyDataSetChanged()
         }
         if (rowIndex == position)
             viewHolder.itemView.setBackgroundColor(Color.parseColor("#22a4dfcc"))

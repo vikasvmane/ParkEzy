@@ -2,6 +2,7 @@ package com.whiterwalkers.parkezy.ui.utils
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
 import com.google.gson.Gson
 import com.whiterwalkers.parkezy.model.pojos.Car
 import com.whiterwalkers.parkezy.model.pojos.Payment
@@ -9,6 +10,7 @@ import com.whiterwalkers.parkezy.model.pojos.Payment
 object DataStore {
     private val gson = Gson()
     lateinit var preferences: SharedPreferences
+    private val TAG = DataStore::class.java.simpleName
     fun setContext(context: Context) {
         preferences = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
     }
@@ -20,6 +22,7 @@ object DataStore {
     fun isLoggedIn() = preferences.getBoolean(IS_SAVED, false)
 
     fun saveSelectedCar(car: Car) {
+        Log.d(TAG, "save selected car $car")
         preferences.edit().putString(USER_SELECTED_CAR, gson.toJson(car)).apply()
     }
 
@@ -28,6 +31,7 @@ object DataStore {
     ) gson.fromJson(preferences.getString(USER_SELECTED_CAR, ""), Car::class.java) else null
 
     fun saveSelectedPayment(payment: Payment) {
+        Log.d(TAG, "save selected payment $payment")
         preferences.edit().putString(USER_SELECTED_PAYMENT, gson.toJson(payment)).apply()
     }
 
