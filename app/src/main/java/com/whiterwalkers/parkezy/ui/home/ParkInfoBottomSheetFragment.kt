@@ -1,7 +1,6 @@
 package com.whiterwalkers.parkezy.ui.home
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -11,8 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.datastore.preferences.core.stringPreferencesKey
-import androidx.datastore.preferences.preferencesDataStore
 import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.gson.Gson
@@ -24,9 +21,6 @@ import com.whiterwalkers.parkezy.model.pojos.ParkingSpot
 import com.whiterwalkers.parkezy.model.pojos.Payment
 import com.whiterwalkers.parkezy.ui.activities.ScannerActivity
 import com.whiterwalkers.parkezy.ui.utils.DataStore
-import com.whiterwalkers.parkezy.ui.utils.USER_SELECTED_CAR
-import com.whiterwalkers.parkezy.ui.utils.USER_SELECTED_PAYMENT
-import kotlinx.coroutines.flow.map
 
 
 class ParkInfoBottomSheetFragment : BottomSheetDialogFragment() {
@@ -60,7 +54,10 @@ class ParkInfoBottomSheetFragment : BottomSheetDialogFragment() {
 //        }
         selectedCar = DataStore.getSelectedCar()
         selectedPayment = DataStore.getSelectedPayment()
-        Log.d(TAG, "parking spot ${mPartSpot.parkingName}")
+        Log.d(
+            TAG,
+            "parking spot ${mPartSpot.parkingName} ${DataStore.getSelectedCar()} ${DataStore.getSelectedPayment()}"
+        )
         return binding.root
 
     }
@@ -99,10 +96,11 @@ class ParkInfoBottomSheetFragment : BottomSheetDialogFragment() {
             binding.tvDescription.text = it.info
             binding.parkingRating.rating = it.ratings ?: 0.0f
         }
-        if (selectedCar != null)
+        if (selectedCar != null) {
             binding.textSelectedCar.text = "${selectedCar!!.make} ${selectedCar!!.model}"
-        else
+        } else {
             binding.textSelectedCar.text = "Select Car"
+        }
         if (selectedPayment != null)
             binding.textSelectedPayment.text = "${selectedPayment!!.paymentName}"
         else

@@ -50,9 +50,9 @@ class CarListAdapter(
 //            rowIndex = position
         viewHolder.itemView.setOnClickListener {
             rowIndex = position
-            notifyDataSetChanged()
             callback.onSelectedVehicle(dataSet[position])
             dataSet[position].isPrimary = true
+            notifyDataSetChanged()
         }
         if (rowIndex == position)
             viewHolder.itemView.setBackgroundColor(Color.parseColor("#22a4dfcc"))
